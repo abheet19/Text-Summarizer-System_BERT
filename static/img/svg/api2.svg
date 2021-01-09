@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="126px" height="140px" viewBox="0 0 126 140" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.2 (51160) - http://www.bohemiancoding.com/sketch -->
+    <title>Easy icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="4.65388576%" y1="103.866567%" x2="123.364666%" y2="-28.7132294%" id="linearGradient-1">
+            <stop stop-color="#FF7BC1" offset="0%"></stop>
+            <stop stop-color="#FFCE9E" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="90.9768537%" y1="108.277771%" x2="26.374985%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#7072E4" offset="0%"></stop>
+            <stop stop-color="#B998FB" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Website-/-Desktop-(Reworked)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="1.-Homepage" transform="translate(-785.000000, -4610.000000)">
+            <g id="Section-6" transform="translate(147.000000, 4352.000000)">
+                <g id="Group-29" transform="translate(0.000000, 193.000000)">
+                    <g id="Group-5" transform="translate(868.000000, 267.000000) scale(-1, 1) translate(-868.000000, -267.000000) translate(590.000000, 0.000000)">
+                        <g id="Easy-icon" transform="translate(382.000000, 65.000000)">
+                            <g id="Group-9" transform="translate(36.000000, 28.000000)">
+                                <path d="M14,14 L69.1954994,14 L86,14 C88.209139,14 90,15.790861 90,18 L90,34.1635792 L90,108 C90,110.209139 88.209139,112 86,112 L14,112 C11.790861,112 10,110.209139 10,108 L10,18 C10,15.790861 11.790861,14 14,14 Z" id="Rectangle-4" fill="url(#linearGradient-1)" opacity="0.200000003"></path>
+                                <polygon id="Path-32" fill="#FFDCD5" points="79.8602635 20.2494921 59.1167096 0.0846855363 56.14929 5.13044535 55.7429075 13.2096008 58.4483024 19.1837248 67.8015855 23.2187913 76.0780112 22.9755633"></polygon>
+                                <path d="M4,3.0008309e-17 L59.1954994,4.4408921e-16 L59.1954994,16.1635792 C59.1954994,18.3727182 60.9863604,20.1635792 63.1954994,20.1635792 L80,20.1635792 L80,94 C80,96.209139 78.209139,98 76,98 L4,98 C1.790861,98 2.705415e-16,96.209139 0,94 L-4.4408921e-16,4 C-7.1463071e-16,1.790861 1.790861,4.05812251e-16 4,0 Z" id="Rectangle-4" fill="url(#linearGradient-1)"></path>
+                                <path d="M41.0373397,38 L61.7611847,38" id="Path-2" stroke="#FFFFFF" stroke-width="6" opacity="0.699999988" stroke-linecap="round"></path>
+                                <path d="M19.0373397,58 L61.7611847,58" id="Path-2" stroke="#FFFFFF" stroke-width="6" opacity="0.699999988" stroke-linecap="round"></path>
+                                <path d="M19.0373397,78 L61.7611847,78" id="Path-2" stroke="#FFFFFF" stroke-width="6" opacity="0.699999988" stroke-linecap="round"></path>
+                            </g>
+                            <g id="Group-50" transform="translate(33.500000, 33.000000) scale(-1, 1) translate(-33.500000, -33.000000) ">
+                                <ellipse id="Oval-3" fill="url(#linearGradient-2)" cx="33.5" cy="33" rx="33.5" ry="33"></ellipse>
+                                <polyline id="Path-10" stroke="#FFFFFF" stroke-width="4.32" stroke-linecap="round" stroke-linejoin="round" transform="translate(32.366951, 34.213081) rotate(8.000000) translate(-32.366951, -34.213081) " points="21.9679452 34.1770197 30.6489362 41.7453115 42.7659574 26.6808511"></polyline>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
