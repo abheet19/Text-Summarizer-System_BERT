@@ -60,7 +60,7 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="nav">
-                                <li><a href="#home">Home</a></li>
+                                <li><a href="{{ url_for('home') }}">Home</a></li>
                                 <li><a href="about-us.html">Portfolio</a></li>
                                 <li><a href="services.html">Skills</a></li>
                                 
@@ -117,7 +117,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="contact_form">
-                        <form action="{{ url_for('PDF_result') }}" method="post" enctype = "multipart/form-data" id="main_contact_form" novalidate>
+                        <form action="{{ url_for('download') }}" method="post" enctype = "multipart/form-data" id="main_contact_form" novalidate>
                             <div class="row">
                                 <div class="col-12">
                                     <div id="success_fail_info"></div>

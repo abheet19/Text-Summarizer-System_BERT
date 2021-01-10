@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, render_template, redirect, url_for
+from flask import Flask, request, jsonify, render_template, redirect, url_for,send_file
 from os import path
 import json
 from newspaper import fulltext
@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 import re
 from summarizer import Summarizer
 import PyPDF2
+import fpdf
 import docx
 import pathlib
 from urllib.parse import urlparse
@@ -55,7 +56,21 @@ def url_validator(url):
     except:
         return False
 
-#-----------------------------Routing methods----------------------------#
+
+def dump(text):
+    mydoc = docx.Document()
+    mydoc.add_heading("Summary", 0)
+    mydoc.add_paragraph(text)
+    mydoc.add_picture("static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
+   
+    mydoc.save('static/download/file.docx')
+
+
+
+
+
+
+    #-----------------------------Routing methods----------------------------#
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -66,6 +81,9 @@ def home():
     if wordcloud.is_file():
         os.remove(wordcloud)
 
+    file = pathlib.Path("static/download/file.docx")
+    if file.is_file():
+        os.remove(file)
 
     return render_template('index.html')
 
@@ -77,6 +95,10 @@ def PDF():
     wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
+
+    file = pathlib.Path("static/download/file.docx")
+    if file.is_file():
+        os.remove(file)
 
 
     return render_template('PDF.html')
@@ -118,7 +140,7 @@ def PDF_result():
                 # summarizer BERT model
 
                 summary = BERT(cleaned_text)
-
+                dump(summary)
                 os.remove(f.filename)
 
             elif suffix == ".docx":  # for WORD file
@@ -132,7 +154,7 @@ def PDF_result():
                 # summarizer BERT model
 
                 summary = BERT(cleaned_text)
-
+                dump(summary)
                 os.remove(f.filename)
 
             elif suffix == ".txt":  # for TXT file
@@ -144,7 +166,7 @@ def PDF_result():
                 # summarizer BERT model
 
                 summary = BERT(cleaned_text)
-
+                dump(summary)
                 os.remove(f.filename)
 
             else:
@@ -160,6 +182,11 @@ def RAW():
     if wordcloud.is_file():
         os.remove(wordcloud)
 
+    file = pathlib.Path("static/download/file.docx")
+    if file.is_file():
+        os.remove(file)
+
+
     return render_template('RAW.html')
 
 
@@ -169,8 +196,6 @@ def RAW_result():
     wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
-
-
 
     if request.method == 'POST':
 
@@ -182,14 +207,24 @@ def RAW_result():
             # summarizer BERT model
 
             summary = BERT(cleaned_text)
+            dump(summary)
 
         else:
             return "<h1>Error! Please upload a correct URL </h1>"
 
     return render_template('RAW_result.html', summary=summary)
 
+
+@app.route('/download', methods=['GET', 'POST'])
+def download():
+    file = pathlib.Path("static/download/file.docx")
+    if file.is_file():
+
+        return send_file(file, as_attachment=True)
+
+
 #-------------------Routing ends----------------------------#
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(port=3000,debug=True)
