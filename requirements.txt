@@ -1,7 +1,6 @@
 absl-py==0.11.0
 astunparse==1.6.3
 autopep8==1.5.4
-gunicorn==19.9.0
 beautifulsoup4==4.9.3
 bert-extractive-summarizer==0.6.1
 blis==0.7.4
