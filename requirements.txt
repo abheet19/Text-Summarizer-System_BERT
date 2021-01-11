@@ -2,8 +2,6 @@ absl-py==0.11.0
 astunparse==1.6.3
 autopep8==1.5.4
 beautifulsoup4==4.9.3
-bert-extractive-summarizer==0.6.1
-blis==0.7.4
 cachetools==4.2.0
 catalogue==1.0.0
 certifi==2020.12.5
@@ -91,3 +89,5 @@ wasabi==0.8.0
 Werkzeug==1.0.1
 wordcloud==1.8.1
 wrapt==1.12.1
+
+bert-extractive-summarizer==0.6.1
