@@ -77,11 +77,11 @@ def dump(text):
 def home():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("./static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("./static/download/file.docx")
+    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -92,11 +92,11 @@ def home():
 def PDF():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("./static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("./static/download/file.docx")
+    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -108,7 +108,7 @@ def PDF():
 def PDF_result():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("./static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
@@ -178,11 +178,11 @@ def PDF_result():
 @app.route('/RAW', methods=['GET', 'POST'])
 def RAW():
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("./static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("./static/download/file.docx")
+    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -193,7 +193,7 @@ def RAW():
 @app.route('/RAW_result', methods=['GET', 'POST'])
 def RAW_result():
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("./static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
@@ -217,7 +217,7 @@ def RAW_result():
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
-    file = pathlib.Path("./static/download/file.docx")
+    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
     if file.is_file():
 
         return send_file(file, as_attachment=True)
