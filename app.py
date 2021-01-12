@@ -36,7 +36,7 @@ def clean_and_process(text):
     plt.figure()
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    plt.savefig('./static/img/wordcloud/wordcloud.png')
+    plt.savefig('/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png')
     #url_for('static',filename='img/wordcloud/wordcloud.png')
     return text
 
@@ -61,9 +61,9 @@ def dump(text):
     mydoc = docx.Document()
     mydoc.add_heading("Summary", 0)
     mydoc.add_paragraph(text)
-    mydoc.add_picture("./static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
+    mydoc.add_picture("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
    
-    mydoc.save('./static/download/file.docx')
+    mydoc.save('/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx')
 
 
 
