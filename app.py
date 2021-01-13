@@ -44,10 +44,10 @@ def clean_and_process(text):
 
 def BERT(cleaned_text):
 
-    custom_config = AutoConfig.from_pretrained('./bert-large-uncased-config.json')
+    custom_config = AutoConfig.from_pretrained('.\bert-large-uncased-config.json')
     custom_config.output_hidden_states=True
     #custom_tokenizer = AutoTokenizer.from_pretrained('./bert-base-uncased-vocab.txt')
-    custom_model = AutoModel.from_pretrained('./bert-large-uncased-pytorch_model.bin', config=custom_config)
+    custom_model = AutoModel.from_pretrained('.\bert-large-uncased-pytorch_model.bin', config=custom_config)
 
     model = Summarizer(custom_model=custom_model)
     result = model(cleaned_text, min_length=30)
