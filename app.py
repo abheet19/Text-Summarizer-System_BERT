@@ -37,7 +37,7 @@ def clean_and_process(text):
     plt.figure()
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    plt.savefig('/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png')
+    plt.savefig('static/img/wordcloud/wordcloud.png')
     #url_for('static',filename='img/wordcloud/wordcloud.png')
     return text
 
@@ -67,9 +67,9 @@ def dump(text):
     mydoc = docx.Document()
     mydoc.add_heading("Summary", 0)
     mydoc.add_paragraph(text)
-    mydoc.add_picture("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
+    mydoc.add_picture("static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
    
-    mydoc.save('/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx')
+    mydoc.save('static/download/file.docx')
 
 
 
@@ -83,11 +83,11 @@ def dump(text):
 def home():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -98,11 +98,11 @@ def home():
 def PDF():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("/static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -114,7 +114,7 @@ def PDF():
 def PDF_result():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
@@ -184,11 +184,11 @@ def PDF_result():
 @app.route('/RAW', methods=['GET', 'POST'])
 def RAW():
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -199,7 +199,7 @@ def RAW():
 @app.route('/RAW_result', methods=['GET', 'POST'])
 def RAW_result():
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
@@ -223,7 +223,7 @@ def RAW_result():
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
 
         return send_file(file, as_attachment=True)
