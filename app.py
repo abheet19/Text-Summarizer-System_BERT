@@ -13,6 +13,7 @@ import pathlib
 from urllib.parse import urlparse
 import requests
 import os
+from transformers import *
 
 
 app = Flask(__name__)
@@ -36,14 +37,19 @@ def clean_and_process(text):
     plt.figure()
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    plt.savefig('/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png')
+    plt.savefig('static/img/wordcloud/wordcloud.png')
     #url_for('static',filename='img/wordcloud/wordcloud.png')
     return text
 
 
 def BERT(cleaned_text):
 
-    model = Summarizer()
+    custom_config = AutoConfig.from_pretrained('./bert-large-uncased-config.json')
+    custom_config.output_hidden_states=True
+    #custom_tokenizer = AutoTokenizer.from_pretrained('./bert-base-uncased-vocab.txt')
+    custom_model = AutoModel.from_pretrained('./bert-large-uncased-pytorch_model.bin', config=custom_config)
+
+    model = Summarizer(custom_model=custom_model)
     result = model(cleaned_text, min_length=30)
     full = "".join(result)
     return full
@@ -61,9 +67,9 @@ def dump(text):
     mydoc = docx.Document()
     mydoc.add_heading("Summary", 0)
     mydoc.add_paragraph(text)
-    mydoc.add_picture("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
+    mydoc.add_picture("static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
    
-    mydoc.save('/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx')
+    mydoc.save('static/download/file.docx')
 
 
 
@@ -77,11 +83,11 @@ def dump(text):
 def home():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -96,7 +102,7 @@ def PDF():
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -108,7 +114,7 @@ def PDF():
 def PDF_result():
 
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
@@ -178,11 +184,11 @@ def PDF_result():
 @app.route('/RAW', methods=['GET', 'POST'])
 def RAW():
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
         os.remove(file)
 
@@ -193,7 +199,7 @@ def RAW():
 @app.route('/RAW_result', methods=['GET', 'POST'])
 def RAW_result():
     ################ for removing the previous wordcloud img on every request,so server dont gets loaded#############
-    wordcloud = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/img/wordcloud/wordcloud.png")
+    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
     if wordcloud.is_file():
         os.remove(wordcloud)
 
@@ -217,7 +223,7 @@ def RAW_result():
 
 @app.route('/download', methods=['GET', 'POST'])
 def download():
-    file = pathlib.Path("/home/ec2-user/Text-Summarizer-System_BERT/static/download/file.docx")
+    file = pathlib.Path("static/download/file.docx")
     if file.is_file():
 
         return send_file(file, as_attachment=True)
