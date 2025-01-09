@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
-
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -17,7 +13,6 @@
     <!-- Favicon -->
     <link rel="icon" href="static/img/core-img/favicon.ico">
 
-    
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="static/css/style.css">
 
@@ -34,7 +29,7 @@
         </div>
     </div>
 
-   <!-- ##### Header Area Start ##### -->
+    <!-- Header Area Start -->
     <header class="header-area fadeInDown" data-wow-delay="0.2s">
         <div class="classy-nav-container light breakpoint-off">
             <div class="container">
@@ -42,7 +37,8 @@
                 <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand light" href="#"><img src="static/img/self/Background.svg" alt="logo"> By Abheet</a>
+                    <a class="nav-brand light" href="#"><img src="static/img/self/Background.svg" alt="logo"> By
+                        Abheet</a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler demo">
@@ -60,15 +56,10 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="nav">
-                                <li><a href="{{ url_for('home') }}">Home</a></li>
+                                <li><a href="{{ url_for('api.home') }}">Home</a></li>
                                 <li><a href="https://abheetsingh.herokuapp.com/">Portfolio</a></li>
-                               
-                                
                                 <li><a href="contact-us.html">About me</a></li>
                             </ul>
-
-                            
-                            
                         </div>
                         <!-- Nav End -->
                     </div>
@@ -80,15 +71,16 @@
 
     <!-- ##### Welcome Area Start ##### -->
     <div class="breadcumb-area clearfix dzsparallaxer auto-init" data-options='{direction: "normal"}'>
-        <div class="divimage dzsparallaxer--target" style="width: 101%; height: 130%; background-image: url(static/img/bg-img/bg-2.jpg)"></div>
+        <div class="divimage dzsparallaxer--target"
+            style="width: 101%; height: 130%; background-image: url(static/img/bg-img/bg-2.jpg)"></div>
         <!-- breadcumb content -->
         <div class="breadcumb-content">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                         <nav aria-label="breadcrumb" class="breadcumb--con text-center">
-                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">Summarization using a URL link</h2>
-                            
+                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">Summarization by scraping a URL link content
+                            </h2>
                         </nav>
                     </div>
                 </div>
@@ -107,8 +99,8 @@
                         <div class="dream-dots justify-content-center wow fadeInUp" data-wow-delay="0.2s">
                             <span>Extractive BERT summarizer by ©Abheet</span>
                         </div>
-                        <h2 class="wow fadeInUp" data-wow-delay="0.3s">Paste a URL link of an article or research paper</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.4s">You can see the result here or on a separate file also</p>
+                        <h2 class="wow fadeInUp" data-wow-delay="0.3s">Get your Summary here!</h2>
+                        <p class="wow fadeInUp" data-wow-delay="0.4s">You can see the result here or you can download a DOCX file</p>
                     </div>
                 </div>
             </div>
@@ -117,25 +109,27 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="contact_form">
-                        <form action="{{ url_for('RAW_result') }}" method="post" enctype = "multipart/form-data" id="main_contact_form" validate>
+                        <form action="{{ url_for('api.download') }}" method="post" enctype="multipart/form-data"
+                            id="main_contact_form" novalidate>
                             <div class="row">
                                 <div class="col-12">
                                     <div id="success_fail_info"></div>
                                 </div>
 
-                                <div class="col-12 col-md-12" >
+                                <div class="col-12 col-md-12">
                                     <div class="group wow fadeInUp" data-wow-delay="0.2s">
-                                        <input type="url" name="name" id="name" required>
+                                        <!-- Display Summary -->
+                                        <div class="justify-content-center text-center"> 
+                                           {{ summary }}
+                                        </div>
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>Your link goes here </label>
+                                        <label></label>
                                     </div>
                                 </div>
-                                
-                                
-                                
+
                                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.6s">
-                                    <button type="submit" class="btn dream-btn">Let's  Scrape</button>
+                                    <button type="submit" class="btn dream-btn">Download file</button>
                                 </div>
                             </div>
                         </form>
@@ -145,28 +139,35 @@
         </div>
     </section>
     <!-- ##### Contact Area End ##### -->
-    
 
     <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area bg-img" >
+    <footer class="footer-area bg-img">
         <div class="footer-content-area mt-0">
             <div class="container">
-                <div class="row ">
+                <div class="row">
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="footer-copywrite-info">
                             <!-- Copywrite -->
                             <div class="copywrite_text fadeInUp" data-wow-delay="0.2s">
                                 <div class="footer-logo">
-                                    <a href="#"><img src="static/img/self/Background.svg" alt="logo"> Abheet Singh Isher </a>
+                                    <a href="#"><img src="static/img/self/Background.svg" alt="logo"> Abheet Singh Isher
+                                    </a>
                                 </div>
-                                <p>I am an aspiring Software Developer in my pre-final year of my CS degree, I love to work around interesting ML ideas and convert them to fully functional web-apps. Afterall integration is not everyone's cup of tea </p>
+                                <p>A full-stack software developer experienced in building web applications and
+                                    data-driven solutions. My portfolio showcases projects utilizing technologies like
+                                    Python (Flask), JavaScript (React), and cloud services (AWS, Azure).
+                                    Interested in AI and building efficient, scalable systems.</p>
                             </div>
                             <!-- Social Icon -->
                             <div class="footer-social-info fadeInUp" data-wow-delay="0.4s">
-                                <a href="https://github.com/abheet19"><i class="fa fa-github" aria-hidden="true"></i></a>
-                                <a href="https://www.instagram.com/abheet_19/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="https://www.linkedin.com/in/abheet-singh-951920175/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp" aria-hidden="true" ></i></a>
+                                <a href="https://github.com/abheet19"><i class="fa fa-github"
+                                        aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/abheet_19/"><i class="fa fa-instagram"
+                                        aria-hidden="true"></i></a>
+                                <a href="https://www.linkedin.com/in/abheet-singh-951920175/"><i class="fa fa-linkedin"
+                                        aria-hidden="true"></i></a>
+                                <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp"
+                                        aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
@@ -176,14 +177,11 @@
                             <!-- Content Info -->
                             <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
                                 <h5>Copyright ©2021 All rights reserved</h5>
-                                
                             </div>
                         </div>
                     </div>
-                    
-                    
 
-                    <div class="col-12 col-lg-4 col-md-6 ">
+                    <div class="col-12 col-lg-4 col-md-6">
                         <div class="contact_info_area d-sm-flex justify-content-between">
                             <!-- Content Info -->
                             <div class="contact_info mt-s text-center fadeInUp" data-wow-delay="0.4s">
@@ -197,23 +195,16 @@
                     </div>
                 </div>
             </div>
-                
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
 
     <!-- ########## All JS ########## -->
-    <!-- jQuery js -->
     <script src="static/js/jquery.min.js"></script>
-    <!-- Popper js -->
     <script src="static/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
     <script src="static/js/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
     <script src="static/js/plugins.js"></script>
-    <!-- Parallax js -->
     <script src="static/js/dzsparallaxer.js"></script>
-    <!-- Active js -->
     <script src="static/js/script.js"></script>
 
 </body>

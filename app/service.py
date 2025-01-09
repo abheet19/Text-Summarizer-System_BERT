@@ -1,3 +1,10 @@
+"""
+Service layer for the Text Summarizer System using BERT.
+
+This module provides functions to clean text, generate word clouds, summarize text using BERT,
+validate URLs, save summaries to DOCX files, fetch articles, and process uploaded files.
+"""
+
 import re
 from wordcloud import WordCloud
 import matplotlib
@@ -13,34 +20,39 @@ import pathlib
 import os
 import PyPDF2
 
+# Configure logging for the service module
 logging.basicConfig(level=logging.ERROR)
 
-def clean_and_process(text):
+# Constants for file paths
+DOCX_PATH = 'static/download/file.docx'
+WORDCLOUD_PATH = 'static/img/wordcloud/wordcloud.png'
+
+def clean_text_and_generate_wordcloud(file_content):
     """
     Clean the input text and generate a word cloud image.
 
     Args:
-        text (str): The input text to be cleaned.
+        file_content (str): The input text to be cleaned.
 
     Returns:
         str: The cleaned text.
     """
-    text = re.sub(r'\d', ' ', text)
-    text = re.sub(r'\W', ' ', text)
-    text = re.sub(r'\s+', ' ', text)
-    text = re.sub(r'\[[0-9]*\]', ' ', text)
+    file_content = re.sub(r'\d', ' ', file_content)
+    file_content = re.sub(r'\W', ' ', file_content)
+    file_content = re.sub(r'\s+', ' ', file_content)
+    file_content = re.sub(r'\[[0-9]*\]', ' ', file_content)
 
     try:
-        wordcloud = WordCloud(max_font_size=100, max_words=100, background_color="white").generate(text)
+        wordcloud = WordCloud(max_font_size=100, max_words=100, background_color="white").generate(file_content)
         plt.figure()
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
-        plt.savefig('static/img/wordcloud/wordcloud.png')
+        plt.savefig(WORDCLOUD_PATH)
     except Exception as e:
         logging.error(f"Error generating word cloud: {e}")
-    return text
+    return file_content
 
-def BERT(cleaned_text):
+def generate_bert_summary(cleaned_text):
     """
     Generate a summary using the BERT model.
 
@@ -75,19 +87,19 @@ def url_validator(url):
         logging.error(f"Error validating URL: {e}")
         return False
 
-def dump(text):
+def save_docx_file(summary_text):
     """
-    Save the summary and word cloud image to a DOCX file.
+    Save summary and word cloud image to a DOCX file.
 
     Args:
-        text (str): The summary text to be saved.
+        summary_text (str): The summary text to be saved.
     """
     try:
         mydoc = docx.Document()
         mydoc.add_heading("Summary", 0)
-        mydoc.add_paragraph(text)
-        mydoc.add_picture("static/img/wordcloud/wordcloud.png", width=docx.shared.Inches(5), height=docx.shared.Inches(6))
-        mydoc.save('static/download/file.docx')
+        mydoc.add_paragraph(summary_text)
+        mydoc.add_picture(WORDCLOUD_PATH, width=docx.shared.Inches(5), height=docx.shared.Inches(6))
+        mydoc.save(DOCX_PATH)
     except Exception as e:
         logging.error(f"Error saving DOCX file: {e}")
 
@@ -122,46 +134,49 @@ def summarize_url(url):
         if not url_validator(url):
             return "Invalid URL"
         article_text = fetch_article(url)
-        cleaned_text = clean_and_process(article_text)
-        summary = BERT(cleaned_text)
-        dump(summary)
-        return summary
+        cleaned_text = clean_text_and_generate_wordcloud(article_text)
+        summary_text = generate_bert_summary(cleaned_text)
+        save_docx_file(summary_text)
+        return summary_text
     except Exception as e:
         logging.error(f"Error summarizing URL: {e}")
         return "Error summarizing URL"
 
 def remove_files():
     """
-    Remove previous word cloud and DOCX files if they exist.
+    Remove previously generated word cloud and DOCX files if present.
     """
-    wordcloud = pathlib.Path("static/img/wordcloud/wordcloud.png")
-    if wordcloud.is_file():
-        os.remove(wordcloud)
+    wordcloud_file = pathlib.Path(WORDCLOUD_PATH)
+    if wordcloud_file.is_file():
+        os.remove(wordcloud_file)
 
-    file = pathlib.Path("static/download/file.docx")
-    if file.is_file():
-        os.remove(file)
+    docx_file = pathlib.Path(DOCX_PATH)
+    if docx_file.is_file():
+        os.remove(docx_file)
 
-def process_file(file):
+def process_file(uploaded_file):
     """
     Process the uploaded file and return the extracted text.
 
     Args:
-        file: The uploaded file.
+        uploaded_file: The uploaded file.
 
     Returns:
         str: The extracted text.
+
+    Raises:
+        ValueError: If the file type is unsupported.
     """
-    suffix = pathlib.Path(file.filename).suffix
+    suffix = pathlib.Path(uploaded_file.filename).suffix.lower()
     if suffix == ".pdf":
-        with open(file.filename, 'rb') as pdf:
+        with open(uploaded_file.filename, 'rb') as pdf:
             pdfReader = PyPDF2.PdfReader(pdf)
-            return "".join([page.extract_text() for page in pdfReader.pages])
+            return "".join([page.extract_text() for page in pdfReader.pages if page.extract_text()])
     elif suffix == ".docx":
-        doc = docx.Document(file.filename)
+        doc = docx.Document(uploaded_file.filename)
         return "".join([para.text for para in doc.paragraphs])
     elif suffix == ".txt":
-        with open(file.filename, 'r') as txt_file:
-            return txt_file.read().replace('\n', '')
+        with open(uploaded_file.filename, 'r', encoding='utf-8') as txt_file:
+            return txt_file.read().replace('\n', ' ')
     else:
         raise ValueError("Unsupported file type")

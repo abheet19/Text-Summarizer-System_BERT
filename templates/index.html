@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="zxx">
 
-
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="description" content="">
+    <meta name="description" content="Text Summarizer using BERT for extracting summaries from documents and URLs.">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -15,11 +15,9 @@
     <!-- Favicon -->
     <link rel="icon" href="static/img/core-img/favicon.ico">
 
-    <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="static/css/style.css">
-
-    <!-- Responsive Stylesheet -->
-    <link rel="stylesheet" href="static/css/responsive.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="static/css/style.css"> <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="static/css/responsive.css"> <!-- Responsive Stylesheet -->
 
 </head>
 
@@ -35,11 +33,11 @@
     <header class="header-area fadeInDown" data-wow-delay="0.2s">
         <div class="classy-nav-container light breakpoint-off">
             <div class="container">
-                <!-- Classy Menu -->
+                <!-- Classy Navbar -->
                 <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand light" href="static/img/self/Background.svg"><img src="static/img/self/Background.svg" alt="logo"> By Abheet </a>
+                    <a class="nav-brand light" href="/"><img src="static/img/self/Background.svg" alt="logo"> By Abheet </a>
 
                     <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler demo">
@@ -49,7 +47,7 @@
                     <!-- Menu -->
                     <div class="classy-menu">
 
-                        <!-- close btn -->
+                        <!-- Close Button -->
                         <div class="classycloseIcon">
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
@@ -57,9 +55,8 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="nav">
-                                <li><a href="{{ url_for('home') }}">Home</a></li>
+                                <li><a href="{{ url_for('api.home') }}">Home</a></li>
                                 <li><a href="https://abheetsingh.herokuapp.com/">Portfolio</a></li>
-                                
                                 <li><a href="#footer">About me</a></li>
                             </ul>
 
@@ -76,9 +73,7 @@
 
     <!-- ##### Welcome Area Start ##### -->
     <section class="hero-section blue-bg relative section-padding" id="home">
-
         <div class="hero-section-content">
-            
             <div class="container h-100">
                 <div class="row h-100 mb-50 align-items-center">
 
@@ -88,107 +83,107 @@
                             <div class="promo-section">
                                 <h3 class="special-head gradient-text cyan">Extractive Text Summarizer</h3>
                             </div>
-                            <h1 class="w-text wow fadeInUp" data-wow-delay="0.2s">Welcome to the BERT-powered powerful text summarizer  </h1>
-                            <p class="g-text wow fadeInUp" data-wow-delay="0.3s">This NLP web-app helps the user to summarize a document or a news article by passing the any type of document or any URL link. This BERT-based deep learning model is built on top of the HuggingFace transformers library.This works by first embedding the sentences, then running a clustering algorithm, finding the sentences that are closest to the cluster's centroids.  </p>
+                            <h1 class="w-text wow fadeInUp" data-wow-delay="0.2s">Welcome to the BERT-powered powerful text summarizer</h1>
+                            <p class="g-text wow fadeInUp" data-wow-delay="0.3s">"This NLP web app performs text summarization on documents and URLs using a BERT-based model implemented with the Hugging Face Transformers library. It achieves this by embedding sentences and applying clustering to find central ideas."</p>
                             <div class="dream-btn-group wow fadeInUp" data-wow-delay="0.4s">
                                 <a href="#demo" class="btn more-btn mr-3">Summarize now</a>
-                                <a href="https://github.com/abheet19/Text-Summarizer-System_BERT" class="btn more-btn"> Github repo</a>
+                                <a href="https://github.com/abheet19/Text-Summarizer-System_BERT" class="btn more-btn">Github repo</a>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- Welcome Image -->
                     <div class="col-lg-6 col-md-12">
-                        <img src="static/img/core-img/about.png" alt="">
+                        <img src="static/img/core-img/about.png" alt="Summarizer Image">
                     </div>
-                   
+
                 </div>
             </div>
         </div>
     </section>
     <!-- ##### Welcome Area End ##### -->
 
-
     <div class="clearfix"></div>
 
-
+    <!-- ##### Demo Section Start ##### -->
     <section class="demo section-padding-100-70" id="demo">
         <div class="container">
             <div class="section-heading text-center">
-                <!-- Dream Dots -->
+                <!-- Dream Dots for Decoration -->
                 <div class="dream-dots justify-content-center wow fadeInUp" data-wow-delay="0.2s">
                     <span class="gradient-text blue">Extractive BERT summarizer by ©Abheet</span>
                 </div>
-                <h2 class=" fadeInUp" data-wow-delay="0.3s">Pick your choice for summarization</h2>
-                <p class=" fadeInUp" data-wow-delay="0.4s">You can pass a PDF file or paste a URL link of any article</p>
+                <h2 class="wow fadeInUp" data-wow-delay="0.3s">Pick your choice for summarization</h2>
+                <p class="wow fadeInUp" data-wow-delay="0.4s">You can pass a PDF file or paste a URL link of any article</p>
             </div>
             <div class="row">
 
+                <!-- PDF Upload Option -->
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="demo-item">
-                        <a href="{{ url_for('PDF') }}" target="_blank"><img src="static/img/self/pdf.jpg" alt="demo" class="img-responsive"></a>
+                        <a href="{{ url_for('api.PDF') }}" target="_blank"><img src="static/img/self/pdf.jpg" alt="PDF Upload" class="img-responsive"></a>
                         <div class="preview-btn-wrapper text-center">
-                            <a href="{{ url_for('PDF') }}" class="preview-demo" target="_blank">Upload a PDF/ Word/ TXT file<i class="fa fa-long-arrow-right"></i></a>
+                            <a href="{{ url_for('api.PDF') }}" class="preview-demo" target="_blank">Upload a PDF/ Word/TXT file<i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
 
+                <!-- URL Paste Option -->
                 <div class="col-lg-6 col-md-6 col-sm-12">
                     <div class="demo-item">
-                        <a href="{{ url_for('RAW') }}" target="_blank"><img src="static/img/self/url.jpg" alt="demo" class="img-responsive"></a>
+                        <a href="{{ url_for('api.RAW') }}" target="_blank"><img src="static/img/self/url.jpg" alt="URL Summarization" class="img-responsive"></a>
                         <div class="preview-btn-wrapper text-center">
-                            <a href="{{ url_for('RAW') }}" class="preview-demo" target="_blank">Paste URL <i class="fa fa-long-arrow-right"></i></a>
+                            <a href="{{ url_for('api.RAW') }}" class="preview-demo" target="_blank">Paste URL <i class="fa fa-long-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
 
-                
-                
             </div>
         </div>
     </section>
+    <!-- ##### Demo Section End ##### -->
 
-       
+    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area bg-img" id="footer">
         <div class="footer-content-area mt-0">
             <div class="container">
                 <div class="row ">
+                    <!-- About Section -->
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="footer-copywrite-info">
-                            <!-- Copywrite -->
+                            <!-- Copywrite Text -->
                             <div class="copywrite_text fadeInUp" data-wow-delay="0.2s">
                                 <div class="footer-logo">
-                                    <a href="#"><img src="static/img/self/Background.svg" alt="logo"> Abheet Singh Isher </a>
+                                    <a href="#"><img src="static/img/self/Background.svg" alt="logo"> Abheet Singh Isher</a>
                                 </div>
-                                <p>I am an aspiring Software Developer in my pre-final year of my CS degree, I love to work around interesting ML ideas and convert them to fully functional web-apps. Afterall integration is not everyone's cup of tea </p>
+                                <p>A full-stack software developer experienced in building web applications and data-driven solutions. My portfolio showcases projects utilizing technologies like Python (Flask), JavaScript (React), and cloud services (AWS, Azure). Interested in AI and building efficient, scalable systems.</p>
                             </div>
-                            <!-- Social Icon -->
+                            <!-- Social Icons -->
                             <div class="footer-social-info fadeInUp" data-wow-delay="0.4s">
                                 <a href="https://github.com/abheet19"><i class="fa fa-github" aria-hidden="true"></i></a>
                                 <a href="https://www.instagram.com/abheet_19/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
                                 <a href="https://www.linkedin.com/in/abheet-singh-951920175/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                                <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp" aria-hidden="true" ></i></a>
+                                <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Copyright Section -->
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
                             <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
-                                <h5>Copyright ©2021 All rights reserved</h5>
-                                
+                                <h5>&copy; 2021 All rights reserved</h5>
                             </div>
                         </div>
                     </div>
-                    
-                    
 
+                    <!-- Contact Information -->
                     <div class="col-12 col-lg-4 col-md-6 ">
                         <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
                             <div class="contact_info mt-s text-center fadeInUp" data-wow-delay="0.4s">
                                 <h5>CONTACT ME</h5>
                                 <p>Karan Nagar</p>
-                                <p>Jammu,Jammu and Kashmir,180001</p>
+                                <p>Jammu, Jammu and Kashmir, 180001</p>
                                 <p>+91-968-239-6948</p>
                                 <p>abheet19@gmail.com</p>
                             </div>
@@ -196,27 +191,18 @@
                     </div>
                 </div>
             </div>
-                
         </div>
+
+        <!-- Scripts -->
+        <script src="static/js/jquery.min.js"></script> <!-- jQuery -->
+        <script src="static/js/popper.min.js"></script> <!-- Popper.js -->
+        <script src="static/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
+        <script src="static/js/plugins.js"></script> <!-- All Plugins JS -->
+        <script src="static/js/dzsparallaxer.js"></script> <!-- Parallax JS -->
+        <script src="static/js/jquery.syotimer.min.js"></script> <!-- Timer JS -->
+        <script src="static/js/script.js"></script> <!-- Active JS -->
     </footer>
     <!-- ##### Footer Area End ##### -->
-
-    <!-- ########## All JS ########## -->
-    <!-- jQuery js -->
-    <script src="static/js/jquery.min.js"></script>
-    <!-- Popper js -->
-    <script src="static/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="static/js/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="static/js/plugins.js"></script>
-    <!-- Parallax js -->
-    <script src="static/js/dzsparallaxer.js"></script>
-
-    <script src="static/js/jquery.syotimer.min.js"></script>
-
-    <!-- script js -->
-    <script src="static/js/script.js"></script>
 
 </body>
 
