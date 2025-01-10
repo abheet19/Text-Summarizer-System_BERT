@@ -211,3 +211,17 @@ def generate_docx(summary):
     doc.save(file_path)
 
     return file_path
+
+def safe_remove_and_render(template_name, render_template_func):
+    """
+    Remove generated files and render the specified template.
+
+    Args:
+        template_name (str): The name of the template to render.
+        render_template_func (function): The render_template function from Flask.
+
+    Returns:
+        Response: The rendered template.
+    """
+    remove_files()
+    return render_template_func(template_name)

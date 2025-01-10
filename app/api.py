@@ -13,7 +13,8 @@ from .service import (
     save_docx_file,
     remove_files,
     process_file,
-    generate_docx
+    generate_docx,
+    safe_remove_and_render
 )
 import pathlib
 import os
@@ -24,19 +25,6 @@ logging.basicConfig(level=logging.ERROR)
 
 api = Blueprint('api', __name__)
 
-def safe_remove_and_render(template_name):
-    """
-    Remove generated files and render the specified template.
-
-    Args:
-        template_name (str): The name of the template to render.
-
-    Returns:
-        Response: The rendered template.
-    """
-    remove_files()
-    return render_template(template_name)
-
 @api.route('/', methods=['GET', 'POST'])
 def home():
     """
@@ -45,7 +33,7 @@ def home():
     Returns:
         Response: The rendered home page.
     """
-    return safe_remove_and_render('index.html')
+    return safe_remove_and_render('index.html', render_template)
 
 @api.route('/PDF', methods=['GET', 'POST'])
 def PDF():
@@ -55,7 +43,7 @@ def PDF():
     Returns:
         Response: The rendered PDF upload page.
     """
-    return safe_remove_and_render('PDF.html')
+    return safe_remove_and_render('PDF.html', render_template)
 
 @api.route('/PDF_result', methods=['GET', 'POST'])
 def PDF_result():
@@ -104,7 +92,7 @@ def RAW():
     Returns:
         Response: The rendered URL input page.
     """
-    return safe_remove_and_render('RAW.html')
+    return safe_remove_and_render('RAW.html', render_template)
 
 @api.route('/RAW_result', methods=['GET', 'POST'])
 def RAW_result():

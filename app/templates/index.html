@@ -116,10 +116,10 @@
                 <h2 class="wow fadeInUp" data-wow-delay="0.3s">Pick your choice for summarization</h2>
                 <p class="wow fadeInUp" data-wow-delay="0.4s">You can pass a PDF file or paste a URL link of any article</p>
             </div>
-            <div class="row">
+            <div class="row justify-content-center"> <!-- Added justify-content-center -->
 
                 <!-- PDF Upload Option -->
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12"> <!-- Changed from col-lg-6 to col-lg-4 -->
                     <div class="demo-item">
                         <a href="{{ url_for('api.PDF') }}" target="_blank"><img src="static/img/self/pdf.jpg" alt="PDF Upload" class="img-responsive"></a>
                         <div class="preview-btn-wrapper text-center">
@@ -129,7 +129,7 @@
                 </div>
 
                 <!-- URL Paste Option -->
-                <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="col-lg-4 col-md-6 col-sm-12"> <!-- Changed from col-lg-6 to col-lg-4 -->
                     <div class="demo-item">
                         <a href="{{ url_for('api.RAW') }}" target="_blank"><img src="static/img/self/url.jpg" alt="URL Summarization" class="img-responsive"></a>
                         <div class="preview-btn-wrapper text-center">
