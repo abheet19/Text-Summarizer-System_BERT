@@ -10,16 +10,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>PDF result</title>
+    <title>RAW result</title>
 
     <!-- Favicon -->
     <link rel="icon" href="static/img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <!-- Responsive Stylesheet -->
-    <link rel="stylesheet" href="static/css/responsive.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
 
 </head>
 
@@ -79,7 +79,7 @@
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                         <nav aria-label="breadcrumb" class="breadcumb--con text-center">
-                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">Summarization using a uploaded file</h2>
+                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">Summarization by scraping a URL link content</h2>
                         </nav>
                     </div>
                 </div>
@@ -89,7 +89,7 @@
     <!-- ##### Welcome Area End ##### -->
 
     <!-- ##### Contact Area Start ##### -->
-    <section class="section-padding-100 contact_us_area" id="contact">
+    <section class="section-padding-70 contact_us_area" id="contact"> <!-- Reduced padding -->
         <div class="container">
             <div class="row">
                 <div class="col-12">
@@ -99,7 +99,7 @@
                             <span>Extractive BERT summarizer by ©Abheet</span>
                         </div>
                         <h2 class="wow fadeInUp" data-wow-delay="0.3s">Get your Summary here!</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.4s">You can see the result here or you can download a DOCX file</p>
+                        <p class="wow fadeInUp mb-3" data-wow-delay="0.4s">You can see the result here or you can download a DOCX file</p> <!-- Reduced margin-bottom -->
                     </div>
                 </div>
             </div>
@@ -114,20 +114,22 @@
                                     <div id="success_fail_info"></div>
                                 </div>
 
-                                <div class="col-12 col-md-12">
+                                <div class="col-12">
                                     <div class="group wow fadeInUp" data-wow-delay="0.2s">
                                         <!-- Display Summary -->
-                                        <div class="justify-content-center text-center"> 
-                                                {{ summary }}
+                                        <div class="summary-box text-center p-4" id="summary"> <!-- Added summary-box class and padding -->
+                                            {{ summary }}
                                         </div>
+                                        <input type="hidden" name="summary" value="{{ summary }}">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
                                         <label></label>
                                     </div>
                                 </div>
                                 
-                                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.6s">
-                                    <button type="submit" class="btn dream-btn">Download file</button>
+                                <!-- Download Button -->
+                                <div class="col-12 text-center wow fadeInUp mt-2 mb-5" data-wow-delay="0.6s"> <!-- Added bottom margin -->
+                                    <button type="submit" class="btn dream-btn" id="download-btn" disabled>Download file</button>
                                 </div>
                             </div>
                         </form>
@@ -167,11 +169,10 @@
                             <!-- Content Info -->
                             <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
                                 <h5>Copyright ©2021 All rights reserved</h5>
-                                
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="col-12 col-lg-4 col-md-6 ">
                         <div class="contact_info_area d-sm-flex justify-content-between">
                             <!-- Content Info -->
@@ -186,7 +187,6 @@
                     </div>
                 </div>
             </div>
-                
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
@@ -198,7 +198,30 @@
     <script src="static/js/plugins.js"></script> <!-- All Plugins JS -->
     <script src="static/js/dzsparallaxer.js"></script> <!-- Parallax JS -->
     <script src="static/js/script.js"></script> <!-- Active JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const summary = document.getElementById('summary').innerText.trim();
+            const downloadBtn = document.getElementById('download-btn');
+            
+            if (summary.length > 0) {
+                downloadBtn.disabled = false;
+                downloadBtn.classList.remove('disabled');
+            } else {
+                downloadBtn.disabled = true;
+                downloadBtn.classList.add('disabled');
+            }
+        });
+    </script>
 
+    <style>
+        .summary-box {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+    </style>
 </body>
 
 </html>

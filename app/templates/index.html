@@ -13,11 +13,11 @@
     <title>Text Summarizer</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="static/img/core-img/favicon.ico">
+    <link rel="icon" href="{{ url_for('static', filename='img/core-img/favicon.ico') }}">
 
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="static/css/style.css"> <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="static/css/responsive.css"> <!-- Responsive Stylesheet -->
+    <!-- Updated CSS Links -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}"> <!-- Responsive Stylesheet -->
 
 </head>
 

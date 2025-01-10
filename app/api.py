@@ -12,7 +12,8 @@ from .service import (
     summarize_url,
     save_docx_file,
     remove_files,
-    process_file
+    process_file,
+    generate_docx
 )
 import pathlib
 import os
@@ -127,7 +128,7 @@ def RAW_result():
 
     return render_template('RAW.html')
 
-@api.route('/download', methods=['GET', 'POST'])
+@api.route('/download', methods=['POST'])
 def download():
     """
     Allow users to download the generated summary as a DOCX file.
@@ -135,7 +136,8 @@ def download():
     Returns:
         Response: The DOCX file for download or an error message if unavailable.
     """
-    docx_file = pathlib.Path("static/download/file.docx")
-    if docx_file.is_file():
-        return send_file(docx_file, as_attachment=True)
-    return "<h1>No file available for download</h1>"
+    summary = request.form.get('summary')
+    if not summary:
+        return "No summary available to download.", 400
+    file_path = generate_docx(summary)
+    return send_file(file_path, as_attachment=True)

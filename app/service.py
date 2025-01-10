@@ -19,6 +19,8 @@ import logging
 import pathlib
 import os
 import PyPDF2
+from docx import Document
+import uuid
 
 # Configure logging for the service module
 logging.basicConfig(level=logging.ERROR)
@@ -43,6 +45,9 @@ def clean_text_and_generate_wordcloud(file_content):
     file_content = re.sub(r'\[[0-9]*\]', ' ', file_content)
 
     try:
+        # Ensure the word cloud directory exists
+        os.makedirs(os.path.dirname(WORDCLOUD_PATH), exist_ok=True)
+        
         wordcloud = WordCloud(max_font_size=100, max_words=100, background_color="white").generate(file_content)
         plt.figure()
         plt.imshow(wordcloud, interpolation='bilinear')
@@ -180,3 +185,29 @@ def process_file(uploaded_file):
             return txt_file.read().replace('\n', ' ')
     else:
         raise ValueError("Unsupported file type")
+
+def generate_docx(summary):
+    """
+    Generate a DOCX file with the summary and word cloud image.
+
+    Args:
+        summary (str): The summary text to be included in the DOCX file.
+
+    Returns:
+        str: The file path of the generated DOCX file.
+    """
+    # Create a unique filename
+    filename = f"summary_{uuid.uuid4().hex}.docx"
+    file_path = os.path.join(os.getcwd(), 'downloads', filename)
+
+    # Ensure the downloads directory exists
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+    # Create a DOCX document
+    doc = Document()
+    doc.add_heading('Summary', level=1)
+    doc.add_paragraph(summary)
+    doc.add_picture(WORDCLOUD_PATH, width=docx.shared.Inches(5), height=docx.shared.Inches(6))
+    doc.save(file_path)
+
+    return file_path

@@ -15,4 +15,7 @@ if __name__ == '__main__':
     port = int(os.getenv('FLASK_RUN_PORT', 8080))
     debug_mode = os.getenv('FLASK_DEBUG', 'False') == 'True'
     
+    # Ensure the downloads directory exists
+    os.makedirs(os.path.join(os.getcwd(), 'downloads'), exist_ok=True)
+    
     app.run(host=host, port=port, debug=debug_mode)

@@ -2,24 +2,22 @@
 <html lang="en">
 
 <head>
-    <!-- Meta Tags and Head Content -->
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>RAW result</title>
+    <title>PDF</title>
 
     <!-- Favicon -->
     <link rel="icon" href="static/img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <!-- Responsive Stylesheet -->
-    <link rel="stylesheet" href="static/css/responsive.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
 
 </head>
 
@@ -31,7 +29,7 @@
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
+    <!-- Header Area Start -->
     <header class="header-area fadeInDown" data-wow-delay="0.2s">
         <div class="classy-nav-container light breakpoint-off">
             <div class="container">
@@ -59,8 +57,12 @@
                             <ul id="nav">
                                 <li><a href="{{ url_for('api.home') }}">Home</a></li>
                                 <li><a href="https://abheetsingh.herokuapp.com/">Portfolio</a></li>
+                                
                                 <li><a href="contact-us.html">About me</a></li>
                             </ul>
+
+                            
+                            
                         </div>
                         <!-- Nav End -->
                     </div>
@@ -68,18 +70,19 @@
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
+    <!-- Header Area End -->
 
     <!-- ##### Welcome Area Start ##### -->
     <div class="breadcumb-area clearfix dzsparallaxer auto-init" data-options='{direction: "normal"}'>
         <div class="divimage dzsparallaxer--target" style="width: 101%; height: 130%; background-image: url(static/img/bg-img/bg-2.jpg)"></div>
-        <!-- Breadcrumb Content -->
+        <!-- breadcumb content -->
         <div class="breadcumb-content">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
                     <div class="col-12">
                         <nav aria-label="breadcrumb" class="breadcumb--con text-center">
-                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">Summarization by scraping a URL link content</h2>
+                            <h2 class="w-text title wow fadeInUp" data-wow-delay="0.2s">Summarization using a uploaded document</h2>
+                            
                         </nav>
                     </div>
                 </div>
@@ -94,17 +97,17 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-center">
-                        <!-- Dream Dots for Decoration -->
+                        <!-- Dream Dots -->
                         <div class="dream-dots justify-content-center wow fadeInUp" data-wow-delay="0.2s">
                             <span>Extractive BERT summarizer by ©Abheet</span>
                         </div>
                         <h2 class="wow fadeInUp" data-wow-delay="0.3s">Get your Summary here!</h2>
-                        <p class="wow fadeInUp" data-wow-delay="0.4s">You can see the result here or you can download a DOCX file</p>
+                        <p class="wow fadeInUp mb-3" data-wow-delay="0.4s">You can see the result here or you can download a DOCX file</p> <!-- Reduced margin-bottom -->
                     </div>
                 </div>
             </div>
 
-            <!-- Contact Form for Download -->
+            <!-- Contact Form -->
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="contact_form">
@@ -114,10 +117,10 @@
                                     <div id="success_fail_info"></div>
                                 </div>
 
-                                <div class="col-12 col-md-12">
+                                <div class="col-12">
                                     <div class="group wow fadeInUp" data-wow-delay="0.2s">
                                         <!-- Display Summary -->
-                                        <div class="justify-content-center text-center"> 
+                                        <div class="text-center"> 
                                             {{ summary }}
                                         </div>
                                         <span class="highlight"></span>
@@ -126,9 +129,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.6s">
-                                    <button type="submit" class="btn dream-btn">Download file</button>
-                                </div>
+                                <!-- Download Button -->
                             </div>
                         </form>
                     </div>
@@ -137,6 +138,29 @@
         </div>
     </section>
     <!-- ##### Contact Area End ##### -->
+
+    <!-- Upload File Form -->
+    <section class="upload-section mt-3"> <!-- Reduced top margin -->
+        <div class="container">
+            <h2 class="text-center mb-3">Upload Document for Summarization</h2> <!-- Reduced bottom margin -->
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form action="{{ url_for('api.PDF_result') }}" method="post" enctype="multipart/form-data" id="upload_form" novalidate>
+                        <div class="form-group">
+                            <label for="file">Choose PDF, Word, or TXT file:</label>
+                            <div class="custom-file">
+                                <input type="file" name="name" id="file" accept=".pdf,.docx,.txt" class="custom-file-input" required>
+                                <label class="custom-file-label" for="file">Choose file</label>
+                            </div>
+                        </div>
+                        <div class="text-center mt-2"> <!-- Reduced top margin -->
+                            <button type="submit" class="btn more-btn">Summarize</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area bg-img" >
@@ -167,9 +191,12 @@
                             <!-- Content Info -->
                             <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
                                 <h5>Copyright ©2021 All rights reserved</h5>
+                                
                             </div>
                         </div>
                     </div>
+                    
+                    
 
                     <div class="col-12 col-lg-4 col-md-6 ">
                         <div class="contact_info_area d-sm-flex justify-content-between">
@@ -185,17 +212,25 @@
                     </div>
                 </div>
             </div>
+                
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
 
     <!-- ########## All JS ########## -->
-    <script src="static/js/jquery.min.js"></script> <!-- jQuery -->
-    <script src="static/js/popper.min.js"></script> <!-- Popper.js -->
-    <script src="static/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
-    <script src="static/js/plugins.js"></script> <!-- All Plugins JS -->
-    <script src="static/js/dzsparallaxer.js"></script> <!-- Parallax JS -->
-    <script src="static/js/script.js"></script> <!-- Active JS -->
+    <!-- jQuery js -->
+    <script src="static/js/jquery.min.js"></script>
+    <!-- Popper js -->
+    <script src="static/js/popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="static/js/bootstrap.min.js"></script>
+    <!-- All Plugins js -->
+    <script src="static/js/plugins.js"></script>
+    <!-- Parallax js -->
+    <script src="static/js/dzsparallaxer.js"></script>
+    <!-- Active js -->
+    <script src="static/js/script.js"></script>
+
 </body>
 
 </html>
