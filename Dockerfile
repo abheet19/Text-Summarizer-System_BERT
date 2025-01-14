@@ -1,4 +1,4 @@
-# Use an official Python runtime as a parent image
+# Use the official Python image.
 FROM python:3.9-slim
 
 # Set environment variables
@@ -9,15 +9,15 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Install dependencies
-COPY requirements.txt .
+COPY requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy project
-COPY . .
+COPY . /app/
 
-# Expose port 8000 for Gunicorn
+# Expose the port
 EXPOSE 8000
 
-# Command to run the application using Gunicorn
-CMD ["gunicorn", "-c", "gunicorn_config.py", "app.api:api"]
+# Command to run the application
+CMD ["gunicorn", "--config", "gunicorn_config.py", "run:app"]

@@ -96,3 +96,7 @@ cython_debug/
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# Ignore log files and directories inside app
+app/logs/
+app/*.log

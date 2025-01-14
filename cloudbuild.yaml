@@ -1,23 +1,23 @@
 steps:
-  # Step 1: Build the Docker image
+  # Step 1: Build the Docker image with a unique tag
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/$PROJECT_ID/text-summarizer:latest', '.']
+    args: ['build', '-t', 'gcr.io/text-summarizer-bert/text-summarizer-bert:${SHORT_SHA}', '.']
 
-  # Step 2: Push the Docker image to Google Container Registry
+  # Step 2: Push the Docker image with the unique tag
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/$PROJECT_ID/text-summarizer:latest']
+    args: ['push', 'gcr.io/text-summarizer-bert/text-summarizer-bert:${SHORT_SHA}']
 
   # Step 3: Deploy the Docker image to Google Cloud Run
   - name: 'gcr.io/cloud-builders/gcloud'
     args: [
-      'run', 'deploy', 'text-summarizer',
-      '--image', 'gcr.io/$PROJECT_ID/text-summarizer:latest',
+      'run', 'deploy', 'text-summarizer-bert',
+      '--image', 'gcr.io/text-summarizer-bert/text-summarizer-bert:${SHORT_SHA}',
       '--platform', 'managed',
       '--region', 'us-central1',
       '--allow-unauthenticated'
     ]
 
 images:
-  - 'gcr.io/$PROJECT_ID/text-summarizer:latest'
+  - 'gcr.io/text-summarizer-bert/text-summarizer-bert:${SHORT_SHA}'
 
 timeout: '1600s'
