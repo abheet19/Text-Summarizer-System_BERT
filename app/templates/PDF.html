@@ -39,43 +39,34 @@
                     <!-- Logo -->
                     <a class="nav-brand light" href="#"><img src="static/img/self/Background.svg" alt="logo"> By Abheet</a>
 
-                    <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler demo">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
                     </div>
 
-                    <!-- Menu -->
                     <div class="classy-menu">
 
-                        <!-- close btn -->
                         <div class="classycloseIcon">
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
 
-                        <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="nav">
                                 <li><a href="{{ url_for('api.home') }}">Home</a></li>
-                                <li><a href="https://abheetsingh.herokuapp.com/">Portfolio</a></li>
-                                
+                                <li><a href="https://www.linkedin.com/in/abheet-singh-isher-951920175">LinkedIn</a></li>
                                 <li><a href="contact-us.html">About me</a></li>
                             </ul>
 
                             
                             
                         </div>
-                        <!-- Nav End -->
                     </div>
                 </nav>
             </div>
         </div>
     </header>
-    <!-- Header Area End -->
 
-    <!-- ##### Welcome Area Start ##### -->
     <div class="breadcumb-area clearfix dzsparallaxer auto-init" data-options='{direction: "normal"}'>
         <div class="divimage dzsparallaxer--target" style="width: 101%; height: 130%; background-image: url(static/img/bg-img/bg-2.jpg)"></div>
-        <!-- breadcumb content -->
         <div class="breadcumb-content">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
@@ -89,15 +80,14 @@
             </div>
         </div>
     </div>
-    <!-- ##### Welcome Area End ##### -->
 
-    <!-- ##### Contact Area Start ##### -->
-    <section class="section-padding-100 contact_us_area" id="contact">
+    <div style="margin: 10px 0;"></div>
+
+    <section class="section-padding-100 contact_us_area" id="contact" style="padding-bottom: 0;">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-center">
-                        <!-- Dream Dots -->
                         <div class="dream-dots justify-content-center wow fadeInUp" data-wow-delay="0.2s">
                             <span>Extractive BERT summarizer by ©Abheet</span>
                         </div>
@@ -107,7 +97,6 @@
                 </div>
             </div>
 
-            <!-- Contact Form -->
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="contact_form">
@@ -119,7 +108,6 @@
 
                                 <div class="col-12">
                                     <div class="group wow fadeInUp" data-wow-delay="0.2s">
-                                        <!-- Display Summary -->
                                         <div class="text-center"> 
                                             {{ summary }}
                                         </div>
@@ -129,7 +117,6 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Download Button -->
                             </div>
                         </form>
                     </div>
@@ -137,19 +124,24 @@
             </div>
         </div>
     </section>
-    <!-- ##### Contact Area End ##### -->
 
-    <!-- Upload File Form -->
-    <section class="upload-section mt-3"> <!-- Reduced top margin -->
+    <section class="upload-section mt-3" style="margin-bottom: 50px;"> <!-- Added margin-bottom -->
         <div class="container">
             <h2 class="text-center mb-3">Upload Document for Summarization</h2> <!-- Reduced bottom margin -->
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <form action="{{ url_for('api.PDF_result') }}" method="post" enctype="multipart/form-data" id="upload_form" novalidate>
                         <div class="form-group">
-                            <label for="file">Choose PDF, Word, or TXT file:</label>
+                            <label for="file">Choose PDF, Word, or TXT file: <span class="text-danger">*</span></label>
                             <div class="custom-file">
-                                <input type="file" name="name" id="file" accept=".pdf,.docx,.txt" class="custom-file-input" required>
+                                <input type="file" 
+                                       name="name" 
+                                       id="file" 
+                                       accept=".pdf,.docx,.txt" 
+                                       class="custom-file-input" 
+                                       required
+                                       oninvalid="this.setCustomValidity('Please choose a file')"
+                                       oninput="this.setCustomValidity('')">
                                 <label class="custom-file-label" for="file">Choose file</label>
                             </div>
                         </div>
@@ -162,25 +154,22 @@
         </div>
     </section>
 
-    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area bg-img" >
         <div class="footer-content-area mt-0">
             <div class="container">
                 <div class="row ">
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="footer-copywrite-info">
-                            <!-- Copywrite -->
                             <div class="copywrite_text fadeInUp" data-wow-delay="0.2s">
                                 <div class="footer-logo">
                                     <a href="#"><img src="static/img/self/Background.svg" alt="logo"> Abheet Singh Isher </a>
                                 </div>
-                                <p>I am an aspiring Software Developer in my pre-final year of my CS degree, I love to work around interesting ML ideas and convert them to fully functional web-apps. Afterall integration is not everyone's cup of tea </p>
+                                <p>A full-stack software developer experienced in building web applications and data-driven solutions. My portfolio showcases projects utilizing technologies like Python (Flask), JavaScript (React), and cloud services (AWS, Azure). Interested in AI and building efficient, scalable systems.</p>
                             </div>
-                            <!-- Social Icon -->
                             <div class="footer-social-info fadeInUp" data-wow-delay="0.4s">
                                 <a href="https://github.com/abheet19"><i class="fa fa-github" aria-hidden="true"></i></a>
-                                <a href="https://www.instagram.com/abheet_19/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="https://www.linkedin.com/in/abheet-singh-951920175/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/abheet_singh27/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.linkedin.com/in/abheet-singh-isher-951920175"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                                 <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp" aria-hidden="true" ></i></a>
                             </div>
                         </div>
@@ -188,7 +177,6 @@
 
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
                             <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
                                 <h5>Copyright ©2021 All rights reserved</h5>
                                 
@@ -200,7 +188,6 @@
 
                     <div class="col-12 col-lg-4 col-md-6 ">
                         <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
                             <div class="contact_info mt-s text-center fadeInUp" data-wow-delay="0.4s">
                                 <h5>CONTACT ME</h5>
                                 <p>Karan Nagar</p>
@@ -215,21 +202,21 @@
                 
         </div>
     </footer>
-    <!-- ##### Footer Area End ##### -->
 
     <!-- ########## All JS ########## -->
-    <!-- jQuery js -->
     <script src="static/js/jquery.min.js"></script>
-    <!-- Popper js -->
     <script src="static/js/popper.min.js"></script>
-    <!-- Bootstrap js -->
     <script src="static/js/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
     <script src="static/js/plugins.js"></script>
-    <!-- Parallax js -->
     <script src="static/js/dzsparallaxer.js"></script>
-    <!-- Active js -->
     <script src="static/js/script.js"></script>
+    <script>
+    document.getElementById("file").addEventListener("change", function() {
+        var fileName = this.files[0].name;
+        var nextSibling = this.nextElementSibling;
+        nextSibling.innerText = fileName;
+    });
+    </script>
 
 </body>
 

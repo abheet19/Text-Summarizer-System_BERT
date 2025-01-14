@@ -2,82 +2,65 @@
 <html lang="zxx">
 
 <head>
-    <!-- Meta Tags -->
     <meta charset="UTF-8">
     <meta name="description" content="Text Summarizer using BERT for extracting summaries from documents and URLs.">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Title -->
     <title>Text Summarizer</title>
 
-    <!-- Favicon -->
     <link rel="icon" href="{{ url_for('static', filename='img/core-img/favicon.ico') }}">
 
-    <!-- Updated CSS Links -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}"> <!-- Responsive Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
 
 </head>
 
 <body class="light-version">
-    <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="dream-load"></div>
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
     <header class="header-area fadeInDown" data-wow-delay="0.2s">
         <div class="classy-nav-container light breakpoint-off">
             <div class="container">
-                <!-- Classy Navbar -->
                 <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
-                    <!-- Logo -->
                     <a class="nav-brand light" href="/"><img src="static/img/self/Background.svg" alt="logo"> By Abheet </a>
 
-                    <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler demo">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
                     </div>
 
-                    <!-- Menu -->
                     <div class="classy-menu">
 
-                        <!-- Close Button -->
                         <div class="classycloseIcon">
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
 
-                        <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="nav">
                                 <li><a href="{{ url_for('api.home') }}">Home</a></li>
-                                <li><a href="https://abheetsingh.herokuapp.com/">Portfolio</a></li>
+                                <li><a href="https://www.linkedin.com/in/abheet-singh-isher-951920175">LinkedIn</a></li>
                                 <li><a href="#footer">About me</a></li>
                             </ul>
 
-                            <!-- Button -->
                             <a href="#demo" class="btn login-btn ml-50">Summarize Now</a>
                         </div>
-                        <!-- Nav End -->
                     </div>
                 </nav>
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Welcome Area Start ##### -->
     <section class="hero-section blue-bg relative section-padding" id="home">
         <div class="hero-section-content">
             <div class="container h-100">
                 <div class="row h-100 mb-50 align-items-center">
 
-                    <!-- Welcome Content -->
                     <div class="col-12 col-lg-6 col-md-12">
                         <div class="welcome-content">
                             <div class="promo-section">
@@ -92,7 +75,6 @@
                         </div>
                     </div>
                     
-                    <!-- Welcome Image -->
                     <div class="col-lg-6 col-md-12">
                         <img src="static/img/core-img/about.png" alt="Summarizer Image">
                     </div>
@@ -101,25 +83,21 @@
             </div>
         </div>
     </section>
-    <!-- ##### Welcome Area End ##### -->
 
     <div class="clearfix"></div>
 
-    <!-- ##### Demo Section Start ##### -->
     <section class="demo section-padding-100-70" id="demo">
         <div class="container">
             <div class="section-heading text-center">
-                <!-- Dream Dots for Decoration -->
                 <div class="dream-dots justify-content-center wow fadeInUp" data-wow-delay="0.2s">
                     <span class="gradient-text blue">Extractive BERT summarizer by ©Abheet</span>
                 </div>
                 <h2 class="wow fadeInUp" data-wow-delay="0.3s">Pick your choice for summarization</h2>
                 <p class="wow fadeInUp" data-wow-delay="0.4s">You can pass a PDF file or paste a URL link of any article</p>
             </div>
-            <div class="row justify-content-center"> <!-- Added justify-content-center -->
+            <div class="row justify-content-center">
 
-                <!-- PDF Upload Option -->
-                <div class="col-lg-4 col-md-6 col-sm-12"> <!-- Changed from col-lg-6 to col-lg-4 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="demo-item">
                         <a href="{{ url_for('api.PDF') }}" target="_blank"><img src="static/img/self/pdf.jpg" alt="PDF Upload" class="img-responsive"></a>
                         <div class="preview-btn-wrapper text-center">
@@ -128,8 +106,7 @@
                     </div>
                 </div>
 
-                <!-- URL Paste Option -->
-                <div class="col-lg-4 col-md-6 col-sm-12"> <!-- Changed from col-lg-6 to col-lg-4 -->
+                <div class="col-lg-4 col-md-6 col-sm-12">
                     <div class="demo-item">
                         <a href="{{ url_for('api.RAW') }}" target="_blank"><img src="static/img/self/url.jpg" alt="URL Summarization" class="img-responsive"></a>
                         <div class="preview-btn-wrapper text-center">
@@ -141,34 +118,28 @@
             </div>
         </div>
     </section>
-    <!-- ##### Demo Section End ##### -->
 
-    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area bg-img" id="footer">
         <div class="footer-content-area mt-0">
             <div class="container">
                 <div class="row ">
-                    <!-- About Section -->
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="footer-copywrite-info">
-                            <!-- Copywrite Text -->
                             <div class="copywrite_text fadeInUp" data-wow-delay="0.2s">
                                 <div class="footer-logo">
                                     <a href="#"><img src="static/img/self/Background.svg" alt="logo"> Abheet Singh Isher</a>
                                 </div>
                                 <p>A full-stack software developer experienced in building web applications and data-driven solutions. My portfolio showcases projects utilizing technologies like Python (Flask), JavaScript (React), and cloud services (AWS, Azure). Interested in AI and building efficient, scalable systems.</p>
                             </div>
-                            <!-- Social Icons -->
                             <div class="footer-social-info fadeInUp" data-wow-delay="0.4s">
                                 <a href="https://github.com/abheet19"><i class="fa fa-github" aria-hidden="true"></i></a>
-                                <a href="https://www.instagram.com/abheet_19/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="https://www.linkedin.com/in/abheet-singh-951920175/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/abheet_singh27/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.linkedin.com/in/abheet-singh-isher-951920175"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                                 <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Copyright Section -->
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="contact_info_area d-sm-flex justify-content-between">
                             <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
@@ -177,7 +148,6 @@
                         </div>
                     </div>
 
-                    <!-- Contact Information -->
                     <div class="col-12 col-lg-4 col-md-6 ">
                         <div class="contact_info_area d-sm-flex justify-content-between">
                             <div class="contact_info mt-s text-center fadeInUp" data-wow-delay="0.4s">
@@ -193,16 +163,14 @@
             </div>
         </div>
 
-        <!-- Scripts -->
-        <script src="static/js/jquery.min.js"></script> <!-- jQuery -->
-        <script src="static/js/popper.min.js"></script> <!-- Popper.js -->
-        <script src="static/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
-        <script src="static/js/plugins.js"></script> <!-- All Plugins JS -->
-        <script src="static/js/dzsparallaxer.js"></script> <!-- Parallax JS -->
-        <script src="static/js/jquery.syotimer.min.js"></script> <!-- Timer JS -->
-        <script src="static/js/script.js"></script> <!-- Active JS -->
+        <script src="static/js/jquery.min.js"></script>
+        <script src="static/js/popper.min.js"></script>
+        <script src="static/js/bootstrap.min.js"></script>
+        <script src="static/js/plugins.js"></script>
+        <script src="static/js/dzsparallaxer.js"></script>
+        <script src="static/js/jquery.syotimer.min.js"></script>
+        <script src="static/js/script.js"></script>
     </footer>
-    <!-- ##### Footer Area End ##### -->
 
 </body>
 

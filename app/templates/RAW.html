@@ -57,7 +57,7 @@
                         <div class="classynav">
                             <ul id="nav">
                                 <li><a href="{{ url_for('api.home') }}">Home</a></li>
-                                <li><a href="https://abheetsingh.herokuapp.com/">Portfolio</a></li>
+                                <li><a href="https://www.linkedin.com/in/abheet-singh-isher-951920175">LinkedIn</a></li>
                                 <li><a href="contact-us.html">About me</a></li>
                             </ul>
                         </div>
@@ -88,6 +88,9 @@
         </div>
     </div>
     <!-- ##### Welcome Area End ##### -->
+
+    <!-- Add spacing div -->
+    <div style="margin: 30px 0;"></div>
 
     <!-- ##### Contact Area Start ##### -->
     <section class="section-padding-100 contact_us_area" id="contact">
@@ -140,8 +143,16 @@
                 <div class="col-md-6">
                     <form action="{{ url_for('api.RAW_result') }}" method="post" id="url_form" novalidate>
                         <div class="form-group">
-                            <label for="url">URL:</label>
-                            <input type="url" name="name" id="url" placeholder="https://example.com/article" class="form-control" required>
+                            <label for="url">URL: <span class="text-danger">*</span></label>
+                            <input type="url" 
+                                   name="name" 
+                                   id="url" 
+                                   placeholder="https://example.com/article" 
+                                   class="form-control" 
+                                   required
+                                   pattern="https?://.+"
+                                   oninvalid="this.setCustomValidity('Please enter a valid URL starting with http:// or https://')"
+                                   oninput="this.setCustomValidity('')">
                         </div>
                         <div class="text-center mt-2"> <!-- Adjusted top margin -->
                             <button type="submit" class="btn more-btn">Summarize</button>
@@ -176,9 +187,9 @@
                             <div class="footer-social-info fadeInUp" data-wow-delay="0.4s">
                                 <a href="https://github.com/abheet19"><i class="fa fa-github"
                                         aria-hidden="true"></i></a>
-                                <a href="https://www.instagram.com/abheet_19/"><i class="fa fa-instagram"
+                                <a href="https://www.instagram.com/abheet_singh27/"><i class="fa fa-instagram"
                                         aria-hidden="true"></i></a>
-                                <a href="https://www.linkedin.com/in/abheet-singh-951920175/"><i class="fa fa-linkedin"
+                                <a href="https://www.linkedin.com/in/abheet-singh-isher-951920175"><i class="fa fa-linkedin"
                                         aria-hidden="true"></i></a>
                                 <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp"
                                         aria-hidden="true"></i></a>

@@ -25,9 +25,10 @@ import uuid
 # Configure logging for the service module
 logging.basicConfig(level=logging.ERROR)
 
-# Constants for file paths
-DOCX_PATH = 'static/download/file.docx'
-WORDCLOUD_PATH = 'static/img/wordcloud/wordcloud.png'
+# Update constants with absolute paths
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DOCX_PATH = os.path.join(BASE_DIR, 'static', 'download', 'file.docx')
+WORDCLOUD_PATH = os.path.join(BASE_DIR, 'static', 'img', 'wordcloud', 'wordcloud.png')
 
 def clean_text_and_generate_wordcloud(file_content):
     """
@@ -45,14 +46,18 @@ def clean_text_and_generate_wordcloud(file_content):
     file_content = re.sub(r'\[[0-9]*\]', ' ', file_content)
 
     try:
-        # Ensure the word cloud directory exists
+        # Create all necessary directories
         os.makedirs(os.path.dirname(WORDCLOUD_PATH), exist_ok=True)
+        
+        # Close any existing plots
+        plt.close('all')
         
         wordcloud = WordCloud(max_font_size=100, max_words=100, background_color="white").generate(file_content)
         plt.figure()
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis("off")
         plt.savefig(WORDCLOUD_PATH)
+        plt.close()  # Close the plot after saving
     except Exception as e:
         logging.error(f"Error generating word cloud: {e}")
     return file_content
@@ -65,12 +70,38 @@ def generate_bert_summary(cleaned_text):
         cleaned_text (str): The cleaned input text.
 
     Returns:
-        str: The generated summary.
+        str: The generated summary with proper sentence separation.
     """
     try:
         model = Summarizer()
-        result = model(cleaned_text, min_length=30)
-        return "".join(result)
+        result = model(cleaned_text, min_length=50)
+        
+        # Improved sentence detection and formatting
+        sentences = []
+        current_sentence = ""
+        
+        # Split into words and reconstruct sentences
+        words = result.split()
+        for word in words:
+            current_sentence += word + " "
+            # Check for sentence endings
+            if word.endswith(('.', '!', '?')) or (word[-1].isalnum() and len(current_sentence) > 50):
+                current_sentence = current_sentence.strip()
+                if not current_sentence[-1] in '.!?':
+                    current_sentence += '.'
+                if current_sentence[0].islower():
+                    current_sentence = current_sentence[0].upper() + current_sentence[1:]
+                sentences.append(current_sentence)
+                current_sentence = ""
+        
+        # Handle any remaining text
+        if current_sentence:
+            if not current_sentence[-1] in '.!?':
+                current_sentence += '.'
+            sentences.append(current_sentence.strip())
+        
+        # Join sentences with proper spacing
+        return ' '.join(sentences)
     except Exception as e:
         logging.error(f"Error generating summary: {e}")
         return "Error generating summary"
@@ -100,6 +131,7 @@ def save_docx_file(summary_text):
         summary_text (str): The summary text to be saved.
     """
     try:
+        os.makedirs(os.path.dirname(DOCX_PATH), exist_ok=True)
         mydoc = docx.Document()
         mydoc.add_heading("Summary", 0)
         mydoc.add_paragraph(summary_text)
@@ -196,21 +228,29 @@ def generate_docx(summary):
     Returns:
         str: The file path of the generated DOCX file.
     """
-    # Create a unique filename
-    filename = f"summary_{uuid.uuid4().hex}.docx"
-    file_path = os.path.join(os.getcwd(), 'downloads', filename)
+    try:
+        # Create a unique filename
+        filename = f"summary_{uuid.uuid4().hex}.docx"
+        file_path = os.path.join(BASE_DIR, 'downloads', filename)
 
-    # Ensure the downloads directory exists
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+        # Ensure the downloads directory exists
+        os.makedirs(os.path.dirname(file_path), exist_ok=True)
 
-    # Create a DOCX document
-    doc = Document()
-    doc.add_heading('Summary', level=1)
-    doc.add_paragraph(summary)
-    doc.add_picture(WORDCLOUD_PATH, width=docx.shared.Inches(5), height=docx.shared.Inches(6))
-    doc.save(file_path)
+        # Verify wordcloud exists
+        if not os.path.exists(WORDCLOUD_PATH):
+            raise FileNotFoundError(f"Wordcloud image not found at {WORDCLOUD_PATH}")
 
-    return file_path
+        # Create DOCX document
+        doc = Document()
+        doc.add_heading('Summary', level=1)
+        doc.add_paragraph(summary)
+        doc.add_picture(WORDCLOUD_PATH, width=docx.shared.Inches(5), height=docx.shared.Inches(6))
+        doc.save(file_path)
+
+        return file_path
+    except Exception as e:
+        logging.error(f"Error generating DOCX: {e}")
+        raise
 
 def safe_remove_and_render(template_name, render_template_func):
     """

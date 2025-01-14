@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Meta Tags and Head Content -->
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -22,56 +21,45 @@
 </head>
 
 <body class="light-version">
-    <!-- Preloader -->
     <div id="preloader">
         <div class="preload-content">
             <div id="dream-load"></div>
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
     <header class="header-area fadeInDown" data-wow-delay="0.2s">
         <div class="classy-nav-container light breakpoint-off">
             <div class="container">
-                <!-- Classy Menu -->
                 <nav class="classy-navbar light justify-content-between" id="dreamNav">
 
                     <!-- Logo -->
                     <a class="nav-brand light" href="#"><img src="static/img/self/Background.svg" alt="logo"> By Abheet</a>
 
-                    <!-- Navbar Toggler -->
                     <div class="classy-navbar-toggler demo">
                         <span class="navbarToggler"><span></span><span></span><span></span></span>
                     </div>
 
-                    <!-- Menu -->
                     <div class="classy-menu">
 
-                        <!-- close btn -->
                         <div class="classycloseIcon">
                             <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                         </div>
 
-                        <!-- Nav Start -->
                         <div class="classynav">
                             <ul id="nav">
                                 <li><a href="{{ url_for('api.home') }}">Home</a></li>
-                                <li><a href="https://abheetsingh.herokuapp.com/">Portfolio</a></li>
+                                <li><a href="https://www.linkedin.com/in/abheet-singh-isher-951920175">LinkedIn</a></li>
                                 <li><a href="contact-us.html">About me</a></li>
                             </ul>
                         </div>
-                        <!-- Nav End -->
                     </div>
                 </nav>
             </div>
         </div>
     </header>
-    <!-- ##### Header Area End ##### -->
 
-    <!-- ##### Welcome Area Start ##### -->
     <div class="breadcumb-area clearfix dzsparallaxer auto-init" data-options='{direction: "normal"}'>
         <div class="divimage dzsparallaxer--target" style="width: 101%; height: 130%; background-image: url(static/img/bg-img/bg-2.jpg)"></div>
-        <!-- Breadcrumb Content -->
         <div class="breadcumb-content">
             <div class="container h-100">
                 <div class="row h-100 align-items-center">
@@ -84,15 +72,14 @@
             </div>
         </div>
     </div>
-    <!-- ##### Welcome Area End ##### -->
 
-    <!-- ##### Contact Area Start ##### -->
+    <div style="margin: 30px 0;"></div>
+
     <section class="section-padding-100 contact_us_area" id="contact">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="section-heading text-center">
-                        <!-- Dream Dots for Decoration -->
                         <div class="dream-dots justify-content-center wow fadeInUp" data-wow-delay="0.2s">
                             <span>Extractive BERT summarizer by ©Abheet</span>
                         </div>
@@ -102,7 +89,6 @@
                 </div>
             </div>
 
-            <!-- Contact Form for Download -->
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <div class="contact_form">
@@ -114,8 +100,7 @@
 
                                 <div class="col-12 col-md-12">
                                     <div class="group wow fadeInUp" data-wow-delay="0.2s">
-                                        <!-- Display Summary -->
-                                        <div class="summary-box text-center p-4" id="summary"> <!-- Added summary-box class and padding -->
+                                        <div class="summary-box text-center p-4" id="summary">
                                             {{ summary }}
                                         </div>
                                         <input type="hidden" name="summary" value="{{ summary }}">
@@ -125,8 +110,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Download Button -->
-                                <div class="col-12 text-center wow fadeInUp mt-2 mb-5" data-wow-delay="0.6s"> <!-- Added bottom margin -->
+                                <div class="col-12 text-center wow fadeInUp mt-2 mb-5" data-wow-delay="0.6s">
                                     <button type="submit" class="btn dream-btn" id="download-btn" disabled>Download file</button>
                                 </div>
                             </div>
@@ -136,27 +120,23 @@
             </div>
         </div>
     </section>
-    <!-- ##### Contact Area End ##### -->
 
-    <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area bg-img" >
         <div class="footer-content-area mt-0">
             <div class="container">
                 <div class="row ">
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="footer-copywrite-info">
-                            <!-- Copywrite -->
                             <div class="copywrite_text fadeInUp" data-wow-delay="0.2s">
                                 <div class="footer-logo">
                                     <a href="#"><img src="static/img/self/Background.svg" alt="logo"> Abheet Singh Isher </a>
                                 </div>
-                                <p>I am an aspiring Software Developer in my pre-final year of my CS degree, I love to work around interesting ML ideas and convert them to fully functional web-apps. Afterall integration is not everyone's cup of tea </p>
+                                <p>A full-stack software developer experienced in building web applications and data-driven solutions. My portfolio showcases projects utilizing technologies like Python (Flask), JavaScript (React), and cloud services (AWS, Azure). Interested in AI and building efficient, scalable systems.</p>
                             </div>
-                            <!-- Social Icon -->
                             <div class="footer-social-info fadeInUp" data-wow-delay="0.4s">
                                 <a href="https://github.com/abheet19"><i class="fa fa-github" aria-hidden="true"></i></a>
-                                <a href="https://www.instagram.com/abheet_19/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                                <a href="https://www.linkedin.com/in/abheet-singh-951920175/"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                <a href="https://www.instagram.com/abheet_singh27/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                                <a href="https://www.linkedin.com/in/abheet-singh-isher-951920175"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                                 <a href="https://api.whatsapp.com/send?phone=919682396948"><i class="fa fa-whatsapp" aria-hidden="true" ></i></a>
                             </div>
                         </div>
@@ -164,7 +144,6 @@
 
                     <div class="col-12 col-lg-4 col-md-6">
                         <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
                             <div class="contact_info mt-x text-center fadeInUp" data-wow-delay="0.3s">
                                 <h5>Copyright ©2021 All rights reserved</h5>
                                 
@@ -174,7 +153,6 @@
                     
                     <div class="col-12 col-lg-4 col-md-6 ">
                         <div class="contact_info_area d-sm-flex justify-content-between">
-                            <!-- Content Info -->
                             <div class="contact_info mt-s text-center fadeInUp" data-wow-delay="0.4s">
                                 <h5>CONTACT ME</h5>
                                 <p>Karan Nagar</p>
@@ -189,9 +167,7 @@
                 
         </div>
     </footer>
-    <!-- ##### Footer Area End ##### -->
 
-    <!-- ########## All JS ########## -->
     <script src="static/js/jquery.min.js"></script> <!-- jQuery -->
     <script src="static/js/popper.min.js"></script> <!-- Popper.js -->
     <script src="static/js/bootstrap.min.js"></script> <!-- Bootstrap JS -->
