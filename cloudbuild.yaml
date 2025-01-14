@@ -21,3 +21,6 @@ images:
   - 'gcr.io/text-summarizer-bert/text-summarizer-bert:${SHORT_SHA}'
 
 timeout: '1600s'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
