@@ -24,3 +24,6 @@ timeout: '1600s'
 
 options:
   logging: CLOUD_LOGGING_ONLY
+
+substitutions:
+  SHORT_SHA: '${COMMIT_SHA:0:7}'
