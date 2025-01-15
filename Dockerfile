@@ -17,7 +17,7 @@ RUN pip install -r requirements.txt
 COPY . /app/
 
 # Expose the port
-EXPOSE 8000
+EXPOSE 8080
 
 # Command to run the application
 CMD ["gunicorn", "--config", "gunicorn_config.py", "run:app"]
