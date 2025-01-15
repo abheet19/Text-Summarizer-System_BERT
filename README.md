@@ -5,13 +5,14 @@ Welcome to the Text Summarizer System powered by a BERT-based extractive summari
 ## Table of Contents
 
 1. Overview
-2. Installation and Requirements
-3. How to Run
-4. Detailed Theory
-5. Usage Workflow
-6. Additional Configuration & Deployment
-7. Contributing
-8. License
+2. Tech Stack
+3. Installation and Requirements
+4. How to Run
+5. Detailed Theory
+6. Usage Workflow
+7. Additional Configuration & Deployment
+8. Contributing
+9. License
 
 ---
 
@@ -22,9 +23,20 @@ This web application generates short, coherent summaries from textual data, rely
 - Summarizing text scraped from a URL.
 - Saving summaries to DOCX files along with a generated word cloud.
 
+## 2. Tech Stack
+
+- **Programming Language:** Python 3.10
+- **Frameworks:** Flask, Gunicorn
+- **Libraries:** BERT (Summarizer), PyPDF2, python-docx, Newspaper3k, WordCloud, Matplotlib
+- **Containerization:** Docker
+- **CI/CD:** GitHub Actions, Google Cloud Build
+- **Deployment:** Google Cloud Run
+- **Version Control:** Git
+- **Other Tools:** Docker, GitHub, Google Cloud Platform
+
 ---
 
-## 2. Installation and Requirements
+## 3. Installation and Requirements
 
 Before proceeding, ensure you have Python 3.x installed and Git available.  
 Install the dependencies using:
@@ -35,7 +47,7 @@ All library versions are explicitly listed in the [requirements.txt](requirement
 
 ---
 
-## 3. How to Run
+## 4. How to Run
 
 1. Clone or download this repository to your local machine.
 2. Navigate to the project directory:
@@ -59,7 +71,7 @@ All library versions are explicitly listed in the [requirements.txt](requirement
 
 ---
 
-## 4. Detailed Theory
+## 5. Detailed Theory
 
 Under the hood, this system uses an extractive summarization technique. Key highlights:
 - Uses the “Summarizer” library, leveraging a pretrained BERT model to rank sentences based on contextual embeddings.
@@ -68,14 +80,14 @@ Under the hood, this system uses an extractive summarization technique. Key high
 
 ---
 
-## 5. Usage Workflow
+## 6. Usage Workflow
 
 1. Upload a file under “Upload Document for Summarization” or provide a URL link in “Summarization by scraping a URL link content”.
 2. Once the text is processed, you can see the summary and optionally download a DOCX file containing the summary and word cloud.
 
 ---
 
-## 6. Additional Configuration & Deployment
+## 7. Additional Configuration & Deployment
 
 - Adjust environment variables in `.env` or `config.py` to set secret keys, debug modes, etc.
 - Containerize the application (e.g., using Docker) for consistent deployment across environments.
@@ -83,12 +95,12 @@ Under the hood, this system uses an extractive summarization technique. Key high
 
 ---
 
-## 7. Contributing
+## 8. Contributing
 
 Feel free to open issues, suggest improvements, or submit pull requests. Collaboration is welcome. Ensure you follow conventional commit messages and document your changes clearly.
 
 ---
 
-## 8. License
+## 9. License
 
 This project is provided “as is” for educational and practice purposes. For official licensing details, consult the LICENSE file (if present) or add a relevant open-source license of your choice.
