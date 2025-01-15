@@ -13,7 +13,7 @@ steps:
       'run', 'deploy', 'text-summarizer-bert',
       '--image', 'gcr.io/text-summarizer-bert/text-summarizer-bert:${SHORT_SHA}',
       '--platform', 'managed',
-      '--region', 'us-central1',
+      '--region', 'us-east1',  # Changed from us-central1 to us-east1
       '--allow-unauthenticated'
     ]
 
